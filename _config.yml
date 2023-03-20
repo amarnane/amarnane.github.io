@@ -81,7 +81,7 @@ analytics:
 # Site Author
 author:
   name             : "Aidan Marnane"
-  avatar           : "profile.png"
+  avatar           : "profile.jpg"
   bio              : "Final Year PhD student at the University of Edinburgh, interested in biomedical applications of unsupervised clustering, similarity networks and graph learning."
   location         : "Cork, IE"
   employer         :
