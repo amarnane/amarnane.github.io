@@ -11,9 +11,9 @@ title                    : "Aidan Marnane"
 title_separator          : "-"
 name                     : &name "Aidan Marnane"
 description              : &description "PhD student at the University of Edinburgh"
-url                      : https://amarnane.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://amarnane.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "amarnane/amarnane.github.io"
+repository               : "amarnane.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -86,8 +86,8 @@ author:
   location         : "Cork, IE"
   employer         :
   pubmed           : 
-  googlescholar    : "http://yourfullgooglescholarurl.com"
-  email            : "a.marnane@ed.ac.uk
+  googlescholar    : # "http://yourfullgooglescholarurl.com"
+  email            : "a.marnane@ed.ac.uk"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -96,14 +96,14 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "academicpages"
+  github           : "amarnane"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         :
-  orcid            : 
+  orcid            : # "http://orcid.org/yourorcidurl"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
