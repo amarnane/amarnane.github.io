@@ -11,23 +11,30 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* PhD. Candidate in Centre for Doctoral Training in Data Science, University of Edinburgh, 2019 - Present
+* MSc(R). in Data Science, University of Edinburgh, 2018-2019
+* BSc. in Mathematical Sciences, University College Cork, 2014-2018
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Spring 2022: CINNTE QQI Student Reviewer
+  * QQI CINNTE review of Trinity College Dublin
+  <!-- * Duties included: Merging pull requests -->
+  <!-- *  Supervisors: Dr. Valery Vishnevskiy & Prof. Dr. Sebastian Kozerke -->
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Summer 2017: AMGEN Scholar Research Intern
+  * ETH Zurich
+  <!-- * Duties included: Merging pull requests -->
+  * Supervisors: Dr. Valery Vishnevskiy & Prof. Dr. Sebastian Kozerke
+
+* Summer 2016: Research internship
+  * Tyndall National Institute
+  <!-- * Duties included: Tagging issues -->
+  * Supervisor: Professor Peter Kennedy
+
+
   
-Skills
+<!-- Skills
 ======
 * Skill 1
 * Skill 2
@@ -35,6 +42,14 @@ Skills
   * Sub-skill 2.2
   * Sub-skill 2.3
 * Skill 3
+
+* Computer Languages
+ * Python (Advanced
+ * C/C++
+ * R
+ * MATLAB 
+* Machine Learning & PyTorch, Pytorch Geometric, DGL, Scikit-Learn \\
+* Python Tools & NumPy/sciPy, Pandas,  Matplotlib, Seaborn, Networkx
 
 Publications
 ======
@@ -56,4 +71,4 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently signed in to 43 different slack teams -->
