@@ -2,7 +2,7 @@
 title: "Getting Started with Quarto"
 date: "2023-04-28"
 categories: [quarto, basic tutorial, jupyter]
-image: "image.jpg"
+image: "starting.jpg"
 format:
   html:
     code-fold: true
@@ -18,7 +18,9 @@ reference-location: margin
 # csl: nature.csl
 ---
 
-Following the [basic tutorial](https://quarto.org/docs/get-started/computations/vscode.html) from Quarto.
+Following the [basic tutorial](https://quarto.org/docs/get-started/computations/vscode.html) from Quarto. [^6]
+[^6]: Blog photo by [Setyaki Irham](https://unsplash.com/@setyaki?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) from [Unsplash](https://unsplash.com/photos/tfdff8Poebw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+  
 
 ## NumPy
 
