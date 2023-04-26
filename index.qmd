@@ -2,7 +2,9 @@
 title: "Aidan Marnane"
 image: files/profile.jpg
 about:
-  template: trestles
+  id: about-section
+  template: jolla
+  image-shape: round
   links:
     - icon: envelope
       text: Email
@@ -16,55 +18,16 @@ about:
     # - icon: linkedin
     #   text: LinkedIn
     #   href: https://uk.linkedin.com/in/aidan-marnane-124391138
-    
----
-
-# Welcome!
-I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is focused on the use of similarity networks and unsupervised clustering for biomedical data. Running, bouldering and board games keep me sane when not banging my head against the monitor! 
-
-## Education
-PhD. Candidate in Centre for Doctoral Training in Data Scienc | University of Edinburgh, 2019 - Present
-
-MSc(R). in Data Science | University of Edinburgh, 2018-2019
-
-BSc. in Mathematical Sciences | University College Cork, 2014-2018
-
-## Experience
-CINNTE QQI Student Reviewer | QQI CINNTE review of Trinity College Dublin, Spring 2022
-
-AMGEN Scholar Research Intern | ETH Zurich, Summer 2017
-
-Research Intern | Tyndall National Institute, Summer 2016
-
-
-
-<!-- ---
-title: "Aidan Marnane"
+   
 listing:
   contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+  max-items: 4 
 ---
 
+:::{#about-section}
 
-
-
-## Welcome!
-
-::: {.column-page-inset}
-::: {.column-page-inset-left}
-
-I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder in the hopes of discovering meaningful subtypes that can improve supports, care and understanding of ASD. I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by [Ian Simpson](http://homepages.inf.ed.ac.uk/thospeda/) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, incorporation of ontology information and the wider area of network science.
+# Welcome!
+I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder. The hope is to discover meaningful subtypes that can improve supports, care and understanding of ASD. I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by [Ian Simpson](http://homepages.inf.ed.ac.uk/thospeda/) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.
 
 :::
 
-<div class="column-margin column-container">
-![](files/profile.jpg){.rounded}
-</div>
-:::
- -->

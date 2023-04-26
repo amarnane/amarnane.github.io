@@ -2,14 +2,13 @@
 title: "Posts"
 listing:
   contents: posts
+  type: grid
   sort: "date desc"
-  type: default
   image-align: right
   max-description-length: 175
   date-format: medium
   categories: true
-  sort-ui: false
-  filter-ui: false
+  sort-ui: [title, date]
 page-layout: full
 title-block-banner: false
 ---
