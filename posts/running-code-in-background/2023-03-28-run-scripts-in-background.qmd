@@ -1,9 +1,7 @@
 ---
 title: "Nohup & Tmux - Background Terminal Processes"
 subtitle: | 
-  There is nothing worse than interrupting an experiment 
-  that has been running for 3 days by closing a terminal window 
-  or losing internet connection. Here is how to fix that.
+  There is nothing worse than interrupting an experiment that has been running for 3 days by closing a terminal window or losing internet connection. Here is how to fix that.
 author: "Aidan Marnane"
 date: "2023-03-28"
 categories: [tmux, nohup, remote working, bash, linux]
