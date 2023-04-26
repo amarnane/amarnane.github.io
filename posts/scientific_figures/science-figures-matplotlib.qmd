@@ -34,7 +34,11 @@ x = np.linspace(0,2,100)
 y1 = x**2
 y2 = x**3
 ```
+:::{layout-ncol=2}
 Pyplot-style 
+
+Object Oriented or subplot style
+
 ```{python}
 plt.figure(figsize=(4,3))
 plt.plot(x, y1, label='quadratic')
@@ -45,7 +49,7 @@ plt.legend()
 plt.savefig('pyplotxy.png')
 plt.show()
 ```
-Object Oriented or subplot style
+
 ```{python}
 fig, ax = plt.subplots(figsize=(4,3))
 ax.plot(x, y1, label='quadratic')
@@ -56,6 +60,7 @@ ax.legend()
 fig.savefig('subplotsxy.png')
 plt.show()
 ```
+:::
 
 :::{.callout-important}
 IGNORE PYPLOT STYLE IT IS AWFUL AND CONFUSING
@@ -107,15 +112,22 @@ ax = axes[0,1]
 ax.plot(x,y2)
 ```
 :::{.callout-note}
-Note if you only have a row or column there is only one dimension (index). So `axes[0]` will be the first row/column `axes[1]` the second etc.
+If you only have a row or column there is only one dimension (index). So `axes[0]` will be the first row/column `axes[1]` the second etc.
+```python
+fig, axes = plt.subplots(1,2)
+ax = axes[0]
+ax = axes[1]
+```
+You can get a flattened list of axes using `axes.flatten()`.
 :::
+
 ## Create functions
 Making good figures is hard so if you spend the time to make a function to plot some data that you will need again in the future make the code into a function. Even better add it to a `.py` file so you can import it in the future.
 
 Just remember you save and show the figure. You manipulate the data with an axis. I don't fully understand how this works in terms of memory but the way I approach plotting functions is to add a parameter to accept an axis and to create a new figure if an axis isn't passed. For example
 ```{python}
 
-def myplotf(x,y,ax=None, **kwargs):
+def myplot(x,y,ax=None, **kwargs):
 	# create a figure if not given an axis
 	if ax is None:
 		fig, ax  = plt.subplots()
@@ -125,35 +137,73 @@ def myplotf(x,y,ax=None, **kwargs):
 	ax.plot(x,y, **kwargs)
 	
 	return fig, ax # if ax is passed as a param then fig will be None
+
+fig, ax = myplot(x, y1, color='C2') # note you can use C0, C1, C2 to cycle through the default colors in matplotlib.
+
+ax.plot(x, y2)
+fig.suptitle('Function Plot')
+plt.show()
 ```
 
+:::{.callout-note}
 Note: `**kwargs` means keyword arguments. `**` is a special operator in python that unpacks dictionaries. It means you don't have to constantly rewrite many optional parameters. It also collects extra keyword arguments. For example, I might want to change the linestyle and alpha of my plot. I can  call my function `myplot(x,y, linestyle='-', alpha=0.5)` and they will get passed to `ax.plot` within `myplotf`.
 
 You might also see `*args`. `*` unpacks lists. So `x,y` is an unpacked list and might be specified in the functions definition as `def myfunc(*args, **kwargs):` (which isn't very informative but happens more often than you would think.)
+:::
 
 ## change dpi not figsize
+A common problem when looking to save or use your figures in publications is that your figure is not big enough/sharp enough/the date is hard to make out. The first argument people typically use to adjust the size of the figure is `figsize`. This does make the figure bigger but it does not make the figure sharper.
 
+::: {layout-ncol=2}
+### `figsize`
+- Sets the size of the figure (width, height) in inches.​
+- Problem: Breaks ratio between linewidth, whitespace and fontsize
 
+### `dpi` - Dots per Inch
+- Increases the resolution by adding dots.​
+- Keeps ratio between linewidth, whitespace and fontsize
+::: 
 
+```{python}
+#| layout-nrow: 2
+#| column: page
+
+def plot(fs,dpi):
+    fig, ax=plt.subplots(figsize=fs, dpi=dpi)
+    ax.set_title("Figsize: {}, dpi: {}".format(fs,dpi))
+    ax.plot([2,4,1,5], label="Label")
+    ax.legend()
+    plt.show()
+
+figsize=(2,2)
+for i in [36, 108, 324]:
+    plot(figsize, i)
+
+dpi=72
+for i in [2,4,6]:
+    plot((i,i), dpi)
+```
 # seaborn
 
 Good visualisation that is easy. This package is great for getting a nice figure quickly. They recently updated the [tutorial](https://seaborn.pydata.org/tutorial/introduction.html)and it is far more intuitive now. 
 
-Pros
-
+:::{layout-ncol=2}
+### Pros
 - nice figures quickly
 - easy to learn
 - integrates really nicely with pandas
 - can change theme and context (switch to poster or paper sized) with one line of code.
 
-Cons
-
+### Cons
 - customising figures can be tricky 
 - yet another way of manipulating matplotlib figures with [figure level functions](https://seaborn.pydata.org/tutorial/function_overview.html)
 - getting pandas dataframe into the [right format](https://seaborn.pydata.org/tutorial/data_structure.html) can be tricky. (pd.melt will be your friend)
+:::
 
 Creating a good figure is incredibly simple and the equivalent figure in matplotlib would take about 10 times the amount of code. This example from their tutorial summarises it nicely.
 ```{python}
+#| column: page
+
 # Import seaborn
 import seaborn as sns
 
@@ -185,9 +235,45 @@ This `seaborn` [tutorial](https://seaborn.pydata.org/tutorial/aesthetics.html) i
 
 `matplotlib` has it's own set of themes available. To set the theme for matplotlib it is very similar to seaborn.
 ```{python}
+#| layout-ncol: 2
+#| cap-location: top
+#| fig-cap: Matplotlib Themes
+#| fig-subcap: 
+#|   - "default"
+#|   - "tableau-colorblind10"
+#|   - "ggplot"
+#|   - "fivethirtyeight"
+#| code-fold: True
+#| column: page
+
+def plot_style_example():
+    fig, ax = plt.subplots()
+    ax.plot(x, x, label='linear')  # Plot some data on the axes.
+    ax.plot(x, y1, label='quadratic')  # Plot more data on the axes...
+    ax.plot(x, y2, label='cubic')  # ... and some more.
+    ax.set_xlabel('x label')  # Add an x-label to the axes.
+    ax.set_ylabel('y label')  # Add a y-label to the axes.
+    ax.set_title("Simple Plot")  # Add a title to the axes.
+    ax.legend()
+    plt.show() 
+
+plt.style.use('default')
+# plot as normal
+plot_style_example()
+
+plt.style.use('tableau-colorblind10')
+# plot as normal
+plot_style_example()
+
+plt.style.use('default')
 plt.style.use('ggplot')
 # plot as normal
-...
+plot_style_example()
+
+plt.style.use('default') # reset style after changing it. Not all style adjust same 
+plt.style.use('fivethirtyeight')
+# plot as normal
+plot_style_example()
 ```
 To see a list of the theme's available 
 ```{python}
@@ -199,6 +285,32 @@ Different theme's change different settings. Use `plt.style.use('default')` to r
 
 Personally I think `sns.set_context` is great for switching between paper and poster images. The increase in line width and reduction of white space is great on a poster and is so simple to switch between the two. Note: The themes available in matplotlib contain `seaborn poster` and `seaborn paper` styles. These themes do not quite replicate the behaviour of `sns.set_context` and if you have a choice between the two use `sns.set_context('poster')` over `plt.style.use('seaborn-v0_8-poster')`. 
 
+```{python}
+#| layout-ncol: 3
+#| cap-location: top
+#| fig-cap: Seaborn Set Context
+#| fig-subcap: 
+#|   - "paper"
+#|   - "talk"
+#|   - "poster"
+#| code-fold: True
+#| column: page
+
+plt.style.use('default')
+sns.set_context('paper')
+# plot as normal
+plot_style_example()
+
+plt.style.use('default')
+sns.set_context('talk')
+# plot as normal
+plot_style_example()
+
+plt.style.use('default')
+sns.set_context('poster')
+# plot as normal
+plot_style_example()
+```
 
 ## ggplot esque
 They have an experimental interface that is recently added `seaborn.objects`. They have a nice run through [here](https://seaborn.pydata.org/tutorial/objects_interface.html). Basic idea is you specify the data with a plot object and then add options such as type of plot (line/scatter/barchart) and data trasformations (aggregate/normalise).
