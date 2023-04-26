@@ -5,5 +5,14 @@
       "/posts/post-with-code/index.html",
       "/posts/welcome/index.html"
     ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html",
+      "/posts/running-code-in-background/2023-03-28-run-scripts-in-background.html",
+      "/posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html"
+    ]
   }
 ]

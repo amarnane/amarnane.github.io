@@ -4,15 +4,19 @@ image: files/profile.jpg
 about:
   template: trestles
   links:
+    - icon: envelope
+      text: Email
+      href: mailto:a.marnane@ed.ac.uk
+    - icon: github
+      text: Github
+      href: https://github.com/amarnane
     - icon: twitter
       text: Twitter
       href: https://twitter.com/a_marnane
     # - icon: linkedin
     #   text: LinkedIn
     #   href: https://uk.linkedin.com/in/aidan-marnane-124391138
-    - icon: github
-      text: Github
-      href: https://github.com/amarnane
+    
 ---
 
 I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is focused on the use of similarity networks and unsupervised clustering for biomedical data. Running, bouldering and board games keep me sane when not banging my head against the monitor! 
