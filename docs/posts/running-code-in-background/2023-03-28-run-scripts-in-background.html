@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../posts.html" rel="" target="">
- <span class="menu-text">posts</span></a>
+ <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/amarnane" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
@@ -216,13 +216,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 <p>If you have a piece of code that takes a long time to complete e.g.&nbsp;a neural network that needs a day to train, a script that needs to download a million papers, a web scraper that needs to wait 10 seconds before recontacting a server (repeated 300,000 times) you will find you working remotely a bit frustrating. When you close your laptop it can disconnect. Or your internet at home is awful. Either way you send your script running overnight and come back in the morning to find the terminal disconnect and cancelled your script. All that time wasted because the connection between you and the server disconnected.</p>
-<p>What we want is to let our scripts/code run and the code to persist even if our terminal session ends. Luckily there are tools in linux that allow us to do this. There are three that I know of - <code>nohup</code> - <code>screen</code> - <code>tmux</code></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><img src="background_code.jpg" class="img-fluid"><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</div></div><p>What we want is to let our scripts/code run and the code to persist even if our terminal session ends. Luckily there are tools in linux that allow us to do this. There are three that I know of</p>
+<ul>
+<li><code>nohup</code></li>
+<li><code>screen</code></li>
+<li><code>tmux</code></li>
+</ul>
 <p>Previously I have only used <code>nohup</code>. In some ways it is the simplest method. But today I am going to try to use some mild propaganda to convert you to <code>tmux</code>.</p>
 <section id="nohup" class="level1">
 <h1>nohup</h1>
@@ -236,9 +244,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="at">-9</span> <span class="kw">`</span><span class="fu">cat</span> save_pid.txt<span class="kw">`</span> <span class="co"># cancel the process associated with our script</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> save_pid.txt <span class="co"># remove the file where we stored the pid afterwards</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Below I will explain what these commands do and why they are helpful.</p>
-<blockquote class="blockquote">
-<p>Note: these commands were discovered through this <a href="https://stackoverflow.com/questions/17385794/how-to-get-the-process-id-to-kill-a-nohup-process">stack overflow answer</a></p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These commands were discovered through this <a href="https://stackoverflow.com/questions/17385794/how-to-get-the-process-id-to-kill-a-nohup-process">stack overflow answer</a></p>
+</div>
+</div>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">getting started</h2>
 <p><code>nohup</code> is a command that tells your script to ignore the hang up signal that occurs when a terminal window is closed (in our case when our laptop disconnects from the server). It stands for “no hang up”. In practice, it is very simple to run. You simply add nohup in front of your normal script/command e.g.</p>
@@ -252,10 +270,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This will send all output from our script into <code>output.log</code>.</p>
 <section id="standard-error" class="level4">
 <h4 class="anchored" data-anchor-id="standard-error">standard error</h4>
-<p>The above script works great but you will find if any errors occur they will not appear. This is because the terminal has two separate ways of outputting 1. <code>stdout</code> - standard output (normal output from scripts or commands) 2. <code>stderr</code> - standard error (output caused by any errors). In your terminal both of these appear the same and show up identically but you actually have to access them separately.</p>
-<blockquote class="blockquote">
-<p>Note: this is system has a number of benefits for admins or server hosts or people doing more complicated computer things. They can check just for errors rather than dealing with all output. Typically a PhD student won’t need to deal with this.</p>
-</blockquote>
+<p>The above script works great but you will find if any errors occur they will not appear. This is because the terminal has two separate ways of outputting</p>
+<ol type="1">
+<li><code>stdout</code> - standard output (normal output from scripts or commands)</li>
+<li><code>stderr</code> - standard error (output caused by any errors).</li>
+</ol>
+<p>In your terminal both of these appear the same and show up identically but you actually have to access them separately.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is system has a number of benefits for admins or server hosts or people doing more complicated computer things. They can check just for errors rather than dealing with all output. Typically a PhD student won’t need to deal with this.</p>
+</div>
+</div>
 <p>To get the standard error to output to our output file we use</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> python trainmymodel.py <span class="op">&gt;</span> output.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>2&gt;&amp;1</code> tells standard error (output channel 2) to output instead through channel 1 (standard output). If we wanted the error to go to a separate file we could use</p>
@@ -267,9 +300,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The last thing I should tell you is that we can append output to an existing log using <code>&gt;&gt;</code>. Here we use <code>&gt; output.log</code> which overwrites our output. If instead we wanted to keep the previous log we can use <code>&gt;&gt;</code></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> python trainmymodel.py <span class="op">&gt;&gt;</span> output.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here we append output all output to the existing <code>output.log</code> file rather than overwriting.</p>
-<blockquote class="blockquote">
-<p>Note: <code>2&gt;&amp;1</code> doesn’t change. This is because we are still redirecting stderr through stdout and when we do this we are note creating or overwriting output files.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>2&gt;&amp;1</code> doesn’t change. This is because we are still redirecting stderr through stdout and when we do this we are note creating or overwriting output files.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="running-in-background" class="level3">
@@ -280,7 +323,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="killing-process" class="level3">
 <h3 class="anchored" data-anchor-id="killing-process">killing process</h3>
-<p>Of course the next question is how do we stop our background process. Using keyboard interrupt or disconnecting won’t work anymore so we need to kill the process directly. To do this we have two steps. 1. find the process id (<code>pid</code>) 2. kill the process manually</p>
+<p>Of course the next question is how do we stop our background process. Using keyboard interrupt or disconnecting won’t work anymore so we need to kill the process directly. To do this we have two steps.</p>
+<ol type="1">
+<li>find the process id (<code>pid</code>)</li>
+<li>kill the process manually</li>
+</ol>
 <p>To find current active process we can use</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> aux </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This lists all process associated with the current user (i.e.&nbsp;your processes). We can search for a particular process using <code>grep</code>.</p>
@@ -307,7 +354,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="tmux" class="level1">
 <h1>tmux</h1>
 <p>Nohup is great but it can be a bit frustrating when trying to develop a script as errors appear in a separate output file. A nice alternative is <code>tmux</code> . It allows you to run terminal sessions in the background. So rather than <code>nohup</code> which ensures a script keeps running after you exit the terminal, <code>tmux</code> allows you to detach from a terminal session and continue later on as if you never left.</p>
-<p>It also add two great additional features - windows (essentially tabs within the terminal) - panes (allow you to split the screen and have multiple terminal instances in one window).</p>
+<p>It also add two great additional features</p>
+<pre><code>- windows (essentially tabs within the terminal) 
+- panes (allow you to split the screen and have multiple terminal instances in one window).</code></pre>
 <p>I really like <code>tmux</code> as it allows me to reconnect to the server and use one command to rejoin a terminal session that has already opened all the folders I might end up working from. For example, when I connect to our server; I have one window in my <code>phd-thesis</code> repository (active code), one in my <code>docs</code> repository (where I keep notes), one in my home repository (<code>~/</code>) and one in my data folder (checking results etc). <code>tmux</code> allows me to connect and get started right from where I left off.</p>
 <p>But there are other benefits. I can also have another <code>tmux</code> session with active scripts that I sent running the night before. So with a single command I can hop to the other tmux session and can check how they progressed.</p>
 <p>I think the functionality is really well implemented and I personally have found it very very useful.</p>
@@ -316,118 +365,154 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This is a mixture of cheat sheet and guide of how to start <code>tmux</code>. I recommend this <a href="https://medium.com/hackernoon/a-gentle-introduction-to-tmux-8d784c404340">guide</a> and this <a href="https://gist.github.com/MohamedAlaa/2961058">cheatsheet</a> for a more in depth walkthrough of <code>tmux</code>. I think the <a href="https://github.com/tmux/tmux/wiki/Getting-Started">official getting started guide</a> is also great. They have some nice images explaining the terminal and go into much better depth of all of tmux’s features than I have (there is advanced copy paste tools I haven’t explored).</p>
 <section id="install-on-ubuntu" class="level3">
 <h3 class="anchored" data-anchor-id="install-on-ubuntu">install on ubuntu</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="co"># first refresh package list</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install tmux <span class="co"># then install tmux</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get update <span class="co"># first refresh package list</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install tmux <span class="co"># then install tmux</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>See <a href="https://github.com/tmux/tmux/wiki/Installing">tmux guide for installation</a> on other distributions/OS.</p>
 </section>
 <section id="create-and-manage-sessions" class="level3">
 <h3 class="anchored" data-anchor-id="create-and-manage-sessions">Create and manage sessions</h3>
 <p>create new session</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>exit</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>list active session</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>kill session by name -t means target</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> kill-ses <span class="at">-t</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> kill-ses <span class="at">-t</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>create new named session</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> new <span class="at">-s</span> mysession</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> new <span class="at">-s</span> mysession</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>detach from session</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>list all session</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> ls </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> ls </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>reattach to mysession</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> a <span class="at">-t</span> mysession</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> a <span class="at">-t</span> mysession</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>name session</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> $</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> $</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="windows" class="level3">
 <h3 class="anchored" data-anchor-id="windows">windows</h3>
 <p>create new window</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>rename window</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> , </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> , </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>move to next window</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>move to previous window</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>kill window</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="panes" class="level3">
 <h3 class="anchored" data-anchor-id="panes">panes</h3>
 <p>horizontal split on current window</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> %</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> %</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>swap panes</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>move between panes using arrow keys</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> →</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> ←</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> →</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> ←</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>show pane numbers</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>kill pane</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote class="blockquote">
-<p>Note: turning on mouse-mode is helpful especially when starting off. Use <code>ctrl+b :</code> to enter <code>set-option</code> mode then type <code>set -g mouse on</code> . See below for how to enable mouse-mode by default in the config.</p>
-</blockquote>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ctrl+b</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Turning on mouse-mode is helpful especially when starting off. Use <code>ctrl+b :</code> to enter <code>set-option</code> mode then type <code>set -g mouse on</code> . See below for how to enable mouse-mode by default in the config.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="customising-tmux" class="level2">
 <h2 class="anchored" data-anchor-id="customising-tmux">Customising tmux</h2>
 <p>This is entirely optional so ignore it if you like. But I personally found editing the appearance and some of the commands very helpful for getting started with <code>tmux</code>.</p>
 <p>To edit the tmux config and customise the visuals of tmux you add commands to <code>~/.tmux.conf</code>. To edit the file in vscode simply type</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ~/.tmux.conf </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> ~/.tmux.conf </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you make some changes e.g.&nbsp;turn on mouse mode by default (adding <code>set -g mouse on</code> to <code>.tmux.conf</code>) then you will need to refresh the tmux settings. One way is to close terminal and reconnect.</p>
 <p>Another is</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> source-file ~/.tmux.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>this is similar to refreshing bash setting by using <code>source ~/.bashrc</code>.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">tmux</span> source-file ~/.tmux.conf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is similar to refreshing bash setting by using <code>source ~/.bashrc</code>.</p>
+</div>
+</div>
 <p>Below is the contents of my <code>.tmux.conf</code> . Most of it is aestethic but <strong>note:</strong> <em>I change the command hotkey from <code>ctrl+b</code> to <code>ctrl+a</code></em></p>
-<p>Here is the full list of the changes contained in the code below - <strong>mouse mode</strong> - turn on mouse mode so I can click between windows &amp; panes - <strong>new hotkey</strong> - change command hotkey from <code>ctrl+b</code> to <code>ctrl+a</code> (only because I find easier to type with one hand) - <strong>enable colours</strong> - <strong>move status bar</strong> - from bottom to to top - <strong>window index</strong> - start counting windows from 1 rather than 0 - <strong>new colors</strong> - changed colours (from green) and added some different formatting (entirely personal preference)</p>
+<p>Here is the full list of the changes contained in the code below</p>
+<ul>
+<li><strong>mouse mode</strong> - turn on mouse mode so I can click between windows &amp; panes</li>
+<li><strong>new hotkey</strong> - change command hotkey from <code>ctrl+b</code> to <code>ctrl+a</code> (only because I find easier to type with one hand)</li>
+<li><strong>enable colours</strong></li>
+<li><strong>move status bar</strong> - from bottom to to top</li>
+<li><strong>window index</strong> - start counting windows from 1 rather than 0</li>
+<li><strong>new colors</strong> - changed colours (from green) and added some different formatting (entirely personal preference)</li>
+</ul>
 <p>My <code>~/.tmux.conf</code>:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># turn on colors</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> default-terminal <span class="st">"xterm-256color"</span> <span class="co"># Setting the correct term</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change tmux command binding to ctrl+a rather than ctrl+b</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="ex">unbind-key</span> C-b</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co"># turn on mouse mode</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> mouse on</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="co"># change index to start from 1</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> base-index 1</span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the status line every second</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-interval 1</span>
-<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co"># statusbar</span></span>
-<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="co">## position of bar and window lists</span></span>
-<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-position top <span class="co"># [top | bottom]  status bar</span></span>
-<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-justify left <span class="co"># [left | centre | right]  window lists</span></span>
-<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="co">## colours &amp; format</span></span>
-<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-style <span class="st">'bg=blue fg=yellow'</span></span>
-<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-left <span class="st">''</span></span>
-<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-right <span class="st">'#[fg=colour233,bg=cyan] %d/%m #[fg=colour233,bg=magenta] %H:%M:%S '</span></span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-right-length 50</span>
-<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-left-length 20</span>
-<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ^colour233 is a shade of grey that looked nice</span></span>
-<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a><span class="co"># set inactive window format and color</span></span>
-<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> window-status-style <span class="st">'fg=black, bg=brightblue'</span></span>
-<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> window-status-format <span class="st">' #I: #W #F'</span></span>
-<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a><span class="co"># set active window format and color</span></span>
-<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a><span class="ex">setw</span> <span class="at">-g</span> window-status-current-style <span class="st">'fg=colour233, bg=yellow bold'</span></span>
-<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> window-status-current-format <span class="st">' #I: #W #F'</span></span>
-<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ^when setting format #F displays a * if in active window and - if not. </span></span>
-<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a><span class="co">#          #I is the index of the window, #W is the window name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># turn on colors</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> default-terminal <span class="st">"xterm-256color"</span> <span class="co"># Setting the correct term</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># change tmux command binding to ctrl+a rather than ctrl+b</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="ex">set-option</span> <span class="at">-g</span> prefix C-a</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="ex">unbind-key</span> C-b</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bind-key</span> C-a send-prefix</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co"># turn on mouse mode</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> mouse on</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="co"># change index to start from 1</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> base-index 1</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the status line every second</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-interval 1</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="co"># statusbar</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="co">## position of bar and window lists</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-position top <span class="co"># [top | bottom]  status bar</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-justify left <span class="co"># [left | centre | right]  window lists</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a><span class="co">## colours &amp; format</span></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-style <span class="st">'bg=blue fg=yellow'</span></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-left <span class="st">''</span></span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-right <span class="st">'#[fg=colour233,bg=cyan] %d/%m #[fg=colour233,bg=magenta] %H:%M:%S '</span></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-right-length 50</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> status-left-length 20</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a><span class="co"># ^colour233 is a shade of grey that looked nice</span></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a><span class="co"># set inactive window format and color</span></span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> window-status-style <span class="st">'fg=black, bg=brightblue'</span></span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> window-status-format <span class="st">' #I: #W #F'</span></span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a><span class="co"># set active window format and color</span></span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a><span class="ex">setw</span> <span class="at">-g</span> window-status-current-style <span class="st">'fg=colour233, bg=yellow bold'</span></span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-g</span> window-status-current-format <span class="st">' #I: #W #F'</span></span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ^when setting format #F displays a * if in active window and - if not. </span></span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a><span class="co">#          #I is the index of the window, #W is the window name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Photo by <a href="https://unsplash.com/@casparrubin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caspar Camille Rubin</a> on <a href="https://unsplash.com/photos/89xuP-XmyrA?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

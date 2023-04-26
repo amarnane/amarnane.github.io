@@ -5,7 +5,6 @@ subtitle: |
 author: "Aidan Marnane"
 date: "2023-04-27"
 categories: [matplotlib, seaborn, python, science, phd]
-draft: true
 ---
 
 
@@ -43,7 +42,7 @@ plt.plot(x, y2, label='cubic')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
-plt.savefig('figures/pyplotxy.png')
+plt.savefig('pyplotxy.png')
 plt.show()
 ```
 Object Oriented or subplot style
@@ -54,8 +53,8 @@ ax.plot(x, y2, label='cubic')
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.legend()
-fig.savefig('figures/subplotsxy.png')
-fig.show()
+fig.savefig('subplotsxy.png')
+plt.show()
 ```
 
 :::{.callout-important}
@@ -65,7 +64,13 @@ IGNORE PYPLOT STYLE IT IS AWFUL AND CONFUSING
 While it is easy to get started with, eventually it only leads to headaches. Firstly, all the commands are slightly different so if someone has written code subplot style it is hard to change it to plt style. Secondly nearly everyone on stack overflow uses subplot style. My advice: start with subplot style and just slowly learn how to change things. 
 
 ## Figure vs Axes
-I always found this confusing when I was learning. And I don't think it is very intuitive (especially the plt.Figure). 
+I always found this confusing when I was learning. And I don't think it is very intuitive (especially the `plt.Figure`). 
+
+:::{.column-margin}
+![](canvas.jpg)[^1]:
+:::
+
+[^1]: Photo by [Justyn Warner](https://unsplash.com/@justynwarner?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/VH8w75u3LE0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 Essentially the Figure is your canvas. It is the image you will download. It controls the size, the resolution and the layout of the image you create. 
 
