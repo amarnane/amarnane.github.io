@@ -13,7 +13,9 @@ draft: true
 
 Default matplotlib is awful. It is hard to learn. There is a lot going on. It is not clear. And the [matplotlib tutorial](https://matplotlib.org/stable/tutorials/introductory/quick_start.html#sphx-glr-tutorials-introductory-quick-start-py) is awful (crazily it used to be worse). **But** the package is very good (*once you get used to it*). The customisation is amazing and it is so helpful when you want to make a specfic plot for your paper/thesis/poster.
 
-Just a slight aside: Any tutorial that starts by telling you *"everything on the figure is an artist"* has no idea how people learn (what is an artist? Do I need to teach it to paint? will it work on its own?)
+:::{.callout-tip title="Just a slight aside"}
+Any tutorial that starts by telling you *"everything on the figure is an artist"* has no idea how people learn (what is an artist? Do I need to teach it to paint? will it work on its own?)
+:::
 
 # Importing Matplotlib
 To import `matplotlib` you don't import `matplotlib` because that would be obvious.
@@ -56,7 +58,9 @@ fig.savefig('figures/subplotsxy.png')
 fig.show()
 ```
 
+:::{.callout-important}
 IGNORE PYPLOT STYLE IT IS AWFUL AND CONFUSING
+:::
 
 While it is easy to get started with, eventually it only leads to headaches. Firstly, all the commands are slightly different so if someone has written code subplot style it is hard to change it to plt style. Secondly nearly everyone on stack overflow uses subplot style. My advice: start with subplot style and just slowly learn how to change things. 
 
@@ -97,8 +101,9 @@ ax.plot(x,y1)
 ax = axes[0,1]
 ax.plot(x,y2)
 ```
+:::{.callout-note}
 Note if you only have a row or column there is only one dimension (index). So `axes[0]` will be the first row/column `axes[1]` the second etc.
-
+:::
 ## Create functions
 Making good figures is hard so if you spend the time to make a function to plot some data that you will need again in the future make the code into a function. Even better add it to a `.py` file so you can import it in the future.
 
@@ -183,8 +188,9 @@ To see a list of the theme's available
 ```{python}
 plt.style.available
 ```
-
-**Note:** different theme's change different settings. Use `plt.style.use('default')` to reset before changing to a new theme.
+:::{.callout-note}
+Different theme's change different settings. Use `plt.style.use('default')` to reset before changing to a new theme.
+:::
 
 Personally I think `sns.set_context` is great for switching between paper and poster images. The increase in line width and reduction of white space is great on a poster and is so simple to switch between the two. Note: The themes available in matplotlib contain `seaborn poster` and `seaborn paper` styles. These themes do not quite replicate the behaviour of `sns.set_context` and if you have a choice between the two use `sns.set_context('poster')` over `plt.style.use('seaborn-v0_8-poster')`. 
 

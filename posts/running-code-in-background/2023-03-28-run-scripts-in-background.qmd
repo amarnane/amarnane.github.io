@@ -47,7 +47,9 @@ rm save_pid.txt # remove the file where we stored the pid afterwards
 
 Below I will explain what these commands do and why they are helpful. 
 
->Note: these commands were discovered through this [stack overflow answer](https://stackoverflow.com/questions/17385794/how-to-get-the-process-id-to-kill-a-nohup-process)
+:::{.callout-note}
+These commands were discovered through this [stack overflow answer](https://stackoverflow.com/questions/17385794/how-to-get-the-process-id-to-kill-a-nohup-process)
+:::
 
 ## getting started
 `nohup` is a command that tells your script to ignore the hang up signal that occurs when a terminal window is closed (in our case when our laptop disconnects from the server). It stands for "no hang up". In practice, it is very simple to run. You simply add nohup in front of your normal script/command e.g.
@@ -76,7 +78,9 @@ The above script works great but you will find if any errors occur they will not
 
 In your terminal both of these appear the same and show up identically but you actually have to access them separately. 
 
->Note: this is system has a number of benefits for admins or server hosts or people doing more complicated computer things. They can check just for errors rather than dealing with all output. Typically a PhD student won't need to deal with this.
+:::{.callout-note}
+This is system has a number of benefits for admins or server hosts or people doing more complicated computer things. They can check just for errors rather than dealing with all output. Typically a PhD student won't need to deal with this.
+:::
 
 To get the standard error to output to our output file we use 
 ```bash
@@ -97,7 +101,9 @@ nohup python trainmymodel.py >> output.log 2>&1
 ```
 Here we append output all output to the existing `output.log` file rather than overwriting. 
 
-> Note: `2>&1` doesn't change. This is because we are still redirecting stderr through stdout and when we do this we are note creating or overwriting output files. 
+:::{.callout-note}
+`2>&1` doesn't change. This is because we are still redirecting stderr through stdout and when we do this we are note creating or overwriting output files. 
+:::
 
 ### running in background
 While running with nohup means our script will not be cancelled when we disconnect, it does mean our terminal window cannot be used for other tasks and there is still the danger we accidentally cancel our script with keyboard interrupt (`ctrl+c`). 
@@ -269,9 +275,9 @@ kill pane
 ctrl+b x
 ```
 
-
->Note: turning on mouse-mode is helpful especially when starting off. Use `ctrl+b :` to enter `set-option` mode then type `set -g mouse on` . See below for how to enable mouse-mode by default in the config.
-
+:::{.callout-note}
+Turning on mouse-mode is helpful especially when starting off. Use `ctrl+b :` to enter `set-option` mode then type `set -g mouse on` . See below for how to enable mouse-mode by default in the config.
+:::
 
 ## Customising tmux 
 This is entirely optional so ignore it if you like. But I personally found editing the appearance and some of the commands very helpful for getting started with `tmux`.
@@ -287,7 +293,9 @@ Another is
 ```bash
 tmux source-file ~/.tmux.conf
 ```
-this is similar to refreshing bash setting by using `source ~/.bashrc`.
+:::{.callout-note}
+This is similar to refreshing bash setting by using `source ~/.bashrc`.
+:::
 
 Below is the contents of my `.tmux.conf` . Most of it is aestethic but  **note:** *I change the command hotkey from `ctrl+b` to `ctrl+a`*
 
