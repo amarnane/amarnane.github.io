@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: profile.jpg
+image: files/profile.jpg
 about:
   template: Trestles
   links:
@@ -13,7 +13,6 @@ about:
     - icon: github
       text: Github
       href: https://github.com/amarnane
-
 ---
 
 I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is focused on the use of similarity networks and unsupervised clustering for biomedical data. Running, bouldering and board games keep me sane when not banging my head against the monitor! 
