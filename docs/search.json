@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Aidan Marnane",
+    "section": "",
+    "text": "I am a PhD student in the Data Science CDT at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder in the hopes of discovering meaningful subtypes that can improve supports, care and understanding of ASD. I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by Ian Simpson and funded in part by the EPSRC. My other research interests include graph learning, incorporation of ontology information and the wider area of network science."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Aidan Marnane",
+    "section": "",
+    "text": "I am a PhD student in the Data Science CDT at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder in the hopes of discovering meaningful subtypes that can improve supports, care and understanding of ASD. I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by Ian Simpson and funded in part by the EPSRC. My other research interests include graph learning, incorporation of ontology information and the wider area of network science."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I am a PhD student in the Data Science CDT at the University of Edinburgh. My research is focused on the use of similarity networks and unsupervised clustering for biomedical data. Running, bouldering and board games keep me sane when not banging my head against the monitor!"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nPhD. Candidate in Centre for Doctoral Training in Data Scienc | University of Edinburgh, 2019 - Present\nMSc(R). in Data Science | University of Edinburgh, 2018-2019\nBSc. in Mathematical Sciences | University College Cork, 2014-2018"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
+    "section": "Experience",
+    "text": "Experience\nCINNTE QQI Student Reviewer | QQI CINNTE review of Trinity College Dublin, Spring 2022\nAMGEN Scholar Research Intern | ETH Zurich, Summer 2017\nResearch Intern | Tyndall National Institute, Summer 2016"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  }
+]
