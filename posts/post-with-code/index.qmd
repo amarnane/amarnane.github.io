@@ -1,10 +1,266 @@
 ---
-title: "Post With Code"
-author: "Harlow Malloc"
-date: "2023-04-26"
-categories: [news, code, analysis]
+title: "Getting Started with Quarto"
+date: "2023-04-28"
+categories: [quarto, basic tutorial, jupyter]
 image: "image.jpg"
-draft: true
+format:
+  html:
+    code-fold: true
+    code-tools: true
+  pdf: 
+    toc: true
+    number-sections: true
+notebook-view:
+  - notebook: penguins.ipynb
+    title: "Plots and Computations"
+bibliography: references.bib
+reference-location: margin
+# csl: nature.csl
 ---
 
-This is a post with executable code.
+Following the [basic tutorial](https://quarto.org/docs/get-started/computations/vscode.html) from Quarto.
+
+## NumPy
+
+```{python}
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+## Matplotlib
+
+```{python}
+#| label: fig-limits
+#| fig-cap: "Errorbar limit selector"
+
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
+```
+
+## Plotly
+
+### without options
+```{python}
+import plotly.express as px
+import plotly.io as pio
+gapminder = px.data.gapminder()
+gapminder2007 = gapminder.query("year == 2007")
+fig = px.scatter(gapminder2007, 
+                 x="gdpPercap", y="lifeExp", color="continent", 
+                 size="pop", size_max=60,
+                 hover_name="country")
+fig.show()
+```
+
+
+### With Options
+```{python}
+#| label: fig-gapminder
+#| fig-cap: "Life Expectancy and GDP"
+#| fig-subcap:
+#|   - "Gapminder: 1957"
+#|   - "Gapminder: 2007"
+#| layout-ncol: 2
+#| column: page
+
+import plotly.express as px
+import plotly.io as pio
+gapminder = px.data.gapminder()
+gapminder2007 = gapminder.query("year == 2007")
+fig = px.scatter(gapminder2007, 
+                 x="gdpPercap", y="lifeExp", color="continent", 
+                 size="pop", size_max=60,
+                 hover_name="country")
+fig.show()
+
+gapminder1957 = gapminder.query("year == 1957")
+fig = px.scatter(gapminder1957, 
+                 x="gdpPercap", y="lifeExp", color="continent", 
+                 size="pop", size_max=60,
+                 hover_name="country")
+fig.show()
+```
+
+
+## From Notebooks
+It is simple to embed plots from precomputed notebooks and include a link.
+
+```
+{{< embed penguins.ipynb#fig-bill-scatter >}}
+```
+{{< embed penguins.ipynb#fig-bill-scatter >}}
+```
+{{< embed penguins.ipynb#fig-bill-marginal >}}
+```
+{{< embed penguins.ipynb#fig-bill-marginal >}}
+You can also include the code by specifying `echo=true` in the call.
+```
+{{< embed penguins.ipynb#species-counts echo=true >}}
+```
+{{< embed penguins.ipynb#species-counts echo=true >}}
+
+You can control how the link to the notebook appears in the title metadata [^4]:
+```
+notebook-view:
+  - notebook: penguins.ipynb
+    title: "Plots and Computations"
+```
+
+[^4]: See the [notebook embedding tutorial](https://quarto.org/docs/authoring/notebook-embed.html) for more info
+
+
+## rendering code
+There are a number of ways to control the rendering of code. For example, if you have a notebook with some code that takes a long time to run you won't want to recompute it everytime you change formatting. There are many options to control this behaviour. [^2] 
+
+```
+execute:
+  freeze: true 
+```
+
+[^2]: see the [python tutorial](https://quarto.org/docs/computations/python.html) for a more in depth explanation
+
+## callout blocks
+Quarto has nice control for adding note blocks. There are five formats [^5]
+- note
+- warning
+- important
+- tip 
+- caution
+
+[^5]: See [their tutorial](https://quarto.org/docs/authoring/callouts.html) for a more in depth explanation
+
+
+```
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+::: {.callout-tip}
+## Tip with Title
+
+This is an example of a callout with a title. See [their tutorial](https://quarto.org/docs/authoring/callouts.html) for a more in depth explanation
+:::
+
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
+```
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+::: {.callout-tip}
+## Tip with Title
+
+This is an example of a callout with a title. 
+:::
+
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
+
+
+## Cross referencing
+
+```{python}
+#| label: fig-line-plot
+#| fig-cap: "A line plot "
+
+import matplotlib.pyplot as plt
+plt.plot([1,23,2,4])
+plt.show()
+```
+
+
+This is a cross reference to our figure @fig-line-plot with `@fig-line-plot`. We can also reference the matplotlib figure above @fig-limits `@fig-limits`. 
+
+:::{.callout-note}
+You must start your label with `fig-` e.g. `fig-line-plot` for the cross reference to work.
+:::
+
+## Citations
+You can include citations by including a bibliography. 
+
+For example, Antoine et al produced some sick work [@alain-2022].
+
+Add a path to your bibliography in the title metadata
+```
+---
+title: "My Document"
+bibliography: references.bib
+---
+```
+
+You can customise citation style and more.[^1]
+```
+---
+title: "My Document"
+bibliography: references.bib
+csl: nature.csl
+---
+``` 
+:::{.callout-note}
+You can download csl files from the [CSL repo](https://github.com/citation-style-language/styles). nature.csl was taken from [here](https://github.com/citation-style-language/styles/blob/master/nature.csl) (there are so many I had to search to get it.)
+:::
+
+[^1]: Footnotes are also possible. For more guidance see the [quarto tutorial](https://quarto.org/docs/authoring/footnotes-and-citations.html)
+
+Citation can also be placed in the margin by adding
+```
+citation-location: margin
+```
+
+## Equations
+We can also write equations. 
+
+They can be placed inline $\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$ `$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$`.
+
+They can be placed centrally.
+```
+$$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$$
+```
+
+$$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$$
+
+
+But they can also be placed in the margin
+```
+::: {.column-margin}
+We know from *the first fundamental theorem of calculus* that for $x$ in $[a, b]$:
+
+
+$$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$$
+
+:::
+```
+::: {.column-margin}
+We know from *the first fundamental theorem of calculus* that for $x$ in $[a, b]$:
+
+
+$$\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x).$$
+
+:::
