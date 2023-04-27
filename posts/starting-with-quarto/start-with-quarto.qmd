@@ -67,8 +67,8 @@ Control how figures appear with comments `#| keyword: value`. [^7]
 
 
 ```` markdown
-```{python}
-#| label: fig-limits
+```python
+#| label: fig-limits-eg
 #| fig-cap: "Errorbar limit selector"
 
 import matplotlib.pyplot as plt
@@ -92,6 +92,8 @@ plt.legend(loc='lower right')
 plt.show(fig)
 ```
 ````
+
+
 
 ```{python}
 #| label: fig-limits

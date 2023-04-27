@@ -24,7 +24,7 @@ format:
       # light: [litera, styles/mytheme.scss]
       # dark: darkly
     css: styles.css
-    highlight-style: witchhazel
+    # highlight-style: witchhazel
 
 
 
