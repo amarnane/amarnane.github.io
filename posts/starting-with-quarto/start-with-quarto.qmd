@@ -61,9 +61,10 @@ a
 ```
 
 ## Matplotlib
-Control how figures appear with comments `#| keyword: value`. [^:7]
+Control how figures appear with comments `#| keyword: value`. [^7]
 
 [^7]: The [getting started tutorial](https://quarto.org/docs/get-started/computations/vscode.html) has a nice description of the main options for figures and code output 
+
 
 ```` markdown
 ```{python}
@@ -93,7 +94,7 @@ plt.show(fig)
 ````
 
 ```{python}
-#| label: fig-limits-eg
+#| label: fig-limits
 #| fig-cap: "Errorbar limit selector"
 
 import matplotlib.pyplot as plt
@@ -259,7 +260,7 @@ plt.show()
 ```
 
 
-This is a cross reference to our figure @fig-line-plot with `@fig-line-plot`. We can also reference the matplotlib figure above @fig-limits-eg `@fig-limits-eg`. 
+This is a cross reference to our figure @fig-line-plot with `@fig-line-plot`. We can also reference the matplotlib figure above @fig-limits `@fig-limits`. 
 
 :::{.callout-note}
 You must start your label with `fig-` e.g. `fig-line-plot` for the cross reference to work.
