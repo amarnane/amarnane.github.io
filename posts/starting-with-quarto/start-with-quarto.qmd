@@ -19,6 +19,8 @@ reference-location: margin
 ---
 
 Following the [basic tutorial](https://quarto.org/docs/get-started/computations/vscode.html) from Quarto. [^6]
+
+
 [^6]: Blog photo by [Setyaki Irham](https://unsplash.com/@setyaki?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) from [Unsplash](https://unsplash.com/photos/tfdff8Poebw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
   
 
@@ -119,7 +121,7 @@ You can also include the code by specifying `echo=true` in the call.
 ```
 {{< embed penguins.ipynb#species-counts echo=true >}}
 
-You can control how the link to the notebook appears in the title metadata [^4]:
+You can control how the link to the notebook appears in the title metadata [^4]
 ```
 notebook-view:
   - notebook: penguins.ipynb

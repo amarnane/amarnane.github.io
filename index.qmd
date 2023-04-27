@@ -3,7 +3,7 @@ title: "Aidan Marnane"
 image: files/profile.jpg
 about:
   id: about-section
-  template: jolla
+  template: solana
   image-shape: round
   links:
     - icon: envelope
@@ -21,13 +21,16 @@ about:
    
 listing:
   contents: posts
+  sort: "date desc"
   max-items: 4 
 ---
 
 :::{#about-section}
 
 # Welcome!
-I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder. The hope is to discover meaningful subtypes that can improve supports, care and understanding of ASD. I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by [Ian Simpson](http://homepages.inf.ed.ac.uk/thospeda/) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.
+I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder. The hope is to discover meaningful subtypes that can improve supports, care and understanding of ASD. 
+
+I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by [Ian Simpson](http://homepages.inf.ed.ac.uk/thospeda/) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.
 
 :::
 

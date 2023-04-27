@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./files/icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -72,9 +73,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -147,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="bash">bash <span class="quarto-category-count">(2)</span></div><div class="category" data-category="basic tutorial">basic tutorial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="jupyter">jupyter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(2)</span></div><div class="category" data-category="matplotlib">matplotlib <span class="quarto-category-count">(1)</span></div><div class="category" data-category="nohup">nohup <span class="quarto-category-count">(1)</span></div><div class="category" data-category="phd">phd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="quarto">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="remote working">remote working <span class="quarto-category-count">(2)</span></div><div class="category" data-category="science">science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="seaborn">seaborn <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ssh">ssh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tmux">tmux <span class="quarto-category-count">(1)</span></div><div class="category" data-category="vscode">vscode <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="bash">bash <span class="quarto-category-count">(2)</span></div><div class="category" data-category="basic tutorial">basic tutorial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="jupyter">jupyter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="linux">linux <span class="quarto-category-count">(2)</span></div><div class="category" data-category="matplotlib">matplotlib <span class="quarto-category-count">(1)</span></div><div class="category" data-category="nohup">nohup <span class="quarto-category-count">(1)</span></div><div class="category" data-category="phd">phd <span class="quarto-category-count">(1)</span></div><div class="category" data-category="python">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="quarto">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="remote working">remote working <span class="quarto-category-count">(2)</span></div><div class="category" data-category="science">science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="seaborn">seaborn <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ssh">ssh <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tmux">tmux <span class="quarto-category-count">(1)</span></div><div class="category" data-category="vscode">vscode <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -172,71 +173,36 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1682679102657" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/post-with-code/penguins.html"> <p class="card-img-top"><img src="posts/post-with-code/penguins_files/figure-html/cell-6-output-1.png" alt="A density plot of bill ratio by species."  class="thumbnail-image card-img"/></p> </a></p>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+     </select>
+  </div>
 </div>
-<div class="body">
-<a href="./posts/post-with-code/penguins.html">
-<h3 class="no-anchor listing-title">
-Palmer Penguins
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-Data from Palmer Penguins R package
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/post-with-code/penguins.html">
-<div class="listing-author">
-Aidan Marnane
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1682666888715" data-listing-reading-time-sort="1">
-<div class="thumbnail">
-<p><a href="./posts/scientific_figures/sci-figures.html"> <p class="card-img-top"><img src="posts/scientific_figures/sci-figures_files/figure-html/cell-4-output-1.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/scientific_figures/sci-figures.html">
-<h3 class="no-anchor listing-title">
-Scientific Figures with Matplotlib
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-To run the notebook below you need to have matplotlib, seaborn, numpy and scipy installed. If needed use
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/scientific_figures/sci-figures.html">
-<div class="listing-author">
-Aidan Marnane
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="quarto,basic tutorial,jupyter" data-listing-date-sort="1682636400000" data-listing-file-modified-sort="1682682006647" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
-<div class="thumbnail">
-<p><a href="./posts/post-with-code/index.html"> <img src="./posts/post-with-code/image.jpg" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/post-with-code/index.html">
-<h3 class="no-anchor listing-title">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="quarto,basic tutorial,jupyter" data-listing-date-sort="1682636400000" data-listing-file-modified-sort="1682684469706" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
+<a href="./posts/starting-with-quarto/start-with-quarto.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/starting-with-quarto/starting.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Getting Started with Quarto
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('quarto'); return false;">
 quarto
@@ -248,36 +214,29 @@ basic tutorial
 jupyter
 </div>
 </div>
-<a href="./posts/post-with-code/index.html">
-<div class="listing-description">
-Following the basic tutorial from Quarto.
+<div class="card-text listing-description">
+Following the basic tutorial from Quarto. <sup>1</sup>
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/post-with-code/index.html">
-<div class="listing-date">
-Apr 28, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Aidan Marnane
 </div>
+<div class="listing-date">
+Apr 28, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="matplotlib,seaborn,python,science,phd" data-listing-date-sort="1682550000000" data-listing-file-modified-sort="1682670214758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
-<div class="thumbnail">
-<p><a href="./posts/scientific_figures/science-figures-matplotlib.html"> <p class="card-img-top"><img src="posts/scientific_figures/science-figures-matplotlib_files/figure-html/cell-4-output-1.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/scientific_figures/science-figures-matplotlib.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="1" data-categories="matplotlib,seaborn,python,science,phd" data-listing-date-sort="1682550000000" data-listing-file-modified-sort="1682670214758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<a href="./posts/scientific_figures/science-figures-matplotlib.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="posts/scientific_figures/science-figures-matplotlib_files/figure-html/cell-4-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Scientific Figures - with matplotlib
-</h3>
-<div class="listing-subtitle">
-<p>Plotting in python is great but it can be hard to get started with matplotlib. Getting an ugly figure is easy, getting a good figure is hard. This might make it easier</p>
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('matplotlib'); return false;">
 matplotlib
@@ -295,36 +254,29 @@ science
 phd
 </div>
 </div>
-<a href="./posts/scientific_figures/science-figures-matplotlib.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 Default matplotlib is awful. It is hard to learn. There is a lot going on. It is not clear. And the matplotlib tutorial is awful (crazily it used to be worse). <strong>But</strong> the package…<em></em>
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/scientific_figures/science-figures-matplotlib.html">
-<div class="listing-date">
-Apr 27, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Aidan Marnane, Aidan Marnane
 </div>
+<div class="listing-date">
+Apr 27, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="tmux,nohup,remote working,bash,linux" data-listing-date-sort="1679958000000" data-listing-file-modified-sort="1682615558721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
-<div class="thumbnail">
-<p><a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html"> <p class="card-img-top"><img src="posts/running-code-in-background/background_code.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="2" data-categories="tmux,nohup,remote working,bash,linux" data-listing-date-sort="1679958000000" data-listing-file-modified-sort="1682615558721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
+<a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="posts/running-code-in-background/background_code.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Nohup &amp; Tmux - Background Terminal Processes
-</h3>
-<div class="listing-subtitle">
-<p>There is nothing worse than interrupting an experiment that has been running for 3 days by closing a terminal window or losing internet connection. Here is how to fix that.</p>
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('tmux'); return false;">
 tmux
@@ -342,36 +294,31 @@ bash
 linux
 </div>
 </div>
-<a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 If you have a piece of code that takes a long time to complete e.g.&nbsp;a neural network that needs a day to train, a script that needs to download a million papers, a web…
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html">
-<div class="listing-date">
-Mar 28, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Aidan Marnane, Aidan Marnane
 </div>
+<div class="listing-date">
+Mar 28, 2023
+</div>
+</div>
+</div>
+</div>
 </a>
 </div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="remote working,ssh,bash,vscode,linux" data-listing-date-sort="1679011200000" data-listing-file-modified-sort="1682612267888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
-<div class="thumbnail">
-<p><a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html"> <img src="./posts/working-on-remote-server/remote_working.jpg" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html">
-<h3 class="no-anchor listing-title">
+<div class="g-col-1" data-index="3" data-categories="remote working,ssh,bash,vscode,linux" data-listing-date-sort="1679011200000" data-listing-file-modified-sort="1682612267888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
+<a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./posts/working-on-remote-server/remote_working.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
 Remote working with ssh &amp; VSCode
-</h3>
-<div class="listing-subtitle">
-<p>Running code remotely is great but can be intimidating to setup. You often get told things like “just use ssh, portforward and you are good to go” as if it is the easiest thing in the world. Hopefully this tutorial helps make it as easy as everyone says it is!</p>
-</div>
-</a>
+</h5>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('remote working'); return false;">
 remote working
@@ -389,22 +336,20 @@ vscode
 linux
 </div>
 </div>
-<a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html">
-<div class="listing-description">
+<div class="card-text listing-description">
 I really like working on a remote server. I find there are a number of benefits over coding locally that are worth taking the time to set it all up.
 </div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html">
-<div class="listing-date">
-Mar 17, 2023
-</div>
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Aidan Marnane
 </div>
-</a>
+<div class="listing-date">
+Mar 17, 2023
 </div>
+</div>
+</div>
+</div>
+</a>
 </div>
 </div>
 <div class="listing-no-matching d-none">

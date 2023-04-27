@@ -8,7 +8,7 @@
 
 <meta name="author" content="Aidan Marnane">
 
-<title>Aidan Marnane - Scientific Figures with Matplotlib</title>
+<title>Aidan Marnane - Scientific Figures</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Scientific Figures with Matplotlib</h1>
+      <h1 class="title">Scientific Figures</h1>
                       </div>
   </div>
     
@@ -173,7 +173,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#create-some-data" id="toc-create-some-data" class="nav-link active" data-scroll-target="#create-some-data">create some data</a></li>
+  <li><a href="#scientific-figures-with-matplotlib" id="toc-scientific-figures-with-matplotlib" class="nav-link active" data-scroll-target="#scientific-figures-with-matplotlib">Scientific Figures with Matplotlib</a>
+  <ul class="collapse">
+  <li><a href="#create-some-data" id="toc-create-some-data" class="nav-link" data-scroll-target="#create-some-data">create some data</a></li>
+  </ul></li>
   <li><a href="#how-to-improve-matplotlib" id="toc-how-to-improve-matplotlib" class="nav-link" data-scroll-target="#how-to-improve-matplotlib">How to improve matplotlib</a>
   <ul class="collapse">
   <li><a href="#default-matplotlib" id="toc-default-matplotlib" class="nav-link" data-scroll-target="#default-matplotlib">Default Matplotlib</a>
@@ -208,6 +211,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="scientific-figures-with-matplotlib" class="level1">
+<h1>Scientific Figures with Matplotlib</h1>
 <p>To run the notebook below you need to have matplotlib, seaborn, numpy and scipy installed. If needed use</p>
 <pre><code>pip install matplotlib numpy seaborn scipy</code></pre>
 <p>to install.</p>
@@ -234,6 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> rng.normal(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 </section>
 <section id="how-to-improve-matplotlib" class="level1">
 <h1>How to improve matplotlib</h1>

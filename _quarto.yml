@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Aidan Marnane"
+  favicon: files/icon.png
   image: files/profile.jpg
   navbar:
     right:

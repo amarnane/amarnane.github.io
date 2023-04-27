@@ -2,16 +2,16 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
+      "/posts/starting-with-quarto/start-with-quarto.html",
+      "/posts/scientific_figures/science-figures-matplotlib.html",
+      "/posts/running-code-in-background/2023-03-28-run-scripts-in-background.html",
+      "/posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html"
     ]
   },
   {
     "listing": "/posts.html",
     "items": [
-      "/posts/post-with-code/penguins.html",
-      "/posts/scientific_figures/sci-figures.html",
-      "/posts/post-with-code/index.html",
+      "/posts/starting-with-quarto/start-with-quarto.html",
       "/posts/scientific_figures/science-figures-matplotlib.html",
       "/posts/running-code-in-background/2023-03-28-run-scripts-in-background.html",
       "/posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html"

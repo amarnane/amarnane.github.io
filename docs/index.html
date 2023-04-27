@@ -30,6 +30,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./files/icon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,7 +62,38 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -113,18 +147,20 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-trestles">
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+
+<div class="quarto-about-solana column-body">
   <div class="about-entity">
-    <img src="files/profile.jpg" class="about-image
-  rounded " style="width: 20em;">
-<header id="title-block-header" class="quarto-title-block default">
+    <div class="entity-contents">
+      <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Aidan Marnane</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
-</header>
-    <div class="about-links">
+</header> <div class="about-links">
   <a href="mailto:a.marnane@ed.ac.uk" class="about-link" rel="" target="">
     <i class="bi bi-envelope"></i>
      <span class="about-link-text">Email</span>
@@ -138,51 +174,143 @@ ul.task-list li input[type="checkbox"] {
      <span class="about-link-text">Twitter</span>
   </a>
 </div>
-  </div>
-  <div class="about-contents"><main class="content" id="quarto-document-content">
+      <div class="about-contents"><div id="about-section">
 <section id="welcome" class="level1">
 <h1>Welcome!</h1>
-<p>I am a PhD student in the <a href="http://datascience.inf.ed.ac.uk/">Data Science CDT</a> at the University of Edinburgh. My research is focused on the use of similarity networks and unsupervised clustering for biomedical data. Running, bouldering and board games keep me sane when not banging my head against the monitor!</p>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
-<p>PhD. Candidate in Centre for Doctoral Training in Data Scienc | University of Edinburgh, 2019 - Present</p>
-<p>MSc(R). in Data Science | University of Edinburgh, 2018-2019</p>
-<p>BSc. in Mathematical Sciences | University College Cork, 2014-2018</p>
+<p>I am a PhD student in the <a href="http://datascience.inf.ed.ac.uk/">Data Science CDT</a> at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder. The hope is to discover meaningful subtypes that can improve supports, care and understanding of ASD.</p>
+<p>I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by <a href="http://homepages.inf.ed.ac.uk/thospeda/">Ian Simpson</a> and funded in part by the <a href="https://epsrc.ukri.org/">EPSRC</a>. My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.</p>
 </section>
-<section id="experience" class="level2">
-<h2 data-anchor-id="experience">Experience</h2>
-<p>CINNTE QQI Student Reviewer | QQI CINNTE review of Trinity College Dublin, Spring 2022</p>
-<p>AMGEN Scholar Research Intern | ETH Zurich, Summer 2017</p>
-<p>Research Intern | Tyndall National Institute, Summer 2016</p>
-<!-- ---
-title: "Aidan Marnane"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
----
-## Welcome!
-::: {.column-page-inset}
-::: {.column-page-inset-left}
-I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder in the hopes of discovering meaningful subtypes that can improve supports, care and understanding of ASD. I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by [Ian Simpson](http://homepages.inf.ed.ac.uk/thospeda/) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, incorporation of ontology information and the wider area of network science.
-:::
-<div class="column-margin column-container">
-![](files/profile.jpg){.rounded}
+</div></div>
+    </div>
+    <img src="files/profile.jpg" class="about-image
+  round " style="height: 15em; width: 15em;">
+  </div>
 </div>
-:::
- -->
 
 
-</section>
-</section>
-</main></div>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="quarto,basic tutorial,jupyter" data-listing-date-sort="1682636400000" data-listing-file-modified-sort="1682684469706" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
+<div class="thumbnail">
+<p><a href="./posts/starting-with-quarto/start-with-quarto.html"> <img src="./posts/starting-with-quarto/starting.jpg" class="thumbnail-image"> </a></p>
 </div>
- <!-- /main -->
+<div class="body">
+<a href="./posts/starting-with-quarto/start-with-quarto.html">
+<h3 class="no-anchor listing-title">
+Getting Started with Quarto
+</h3>
+<div class="listing-subtitle">
+
+</div>
+<div class="listing-description">
+Following the basic tutorial from Quarto. <sup>1</sup>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/starting-with-quarto/start-with-quarto.html">
+<div class="listing-date">
+Apr 28, 2023
+</div>
+<div class="listing-author">
+Aidan Marnane
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="matplotlib,seaborn,python,science,phd" data-listing-date-sort="1682550000000" data-listing-file-modified-sort="1682670214758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<div class="thumbnail">
+<p><a href="./posts/scientific_figures/science-figures-matplotlib.html"> <p class="card-img-top"><img src="posts/scientific_figures/science-figures-matplotlib_files/figure-html/cell-4-output-1.png"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="./posts/scientific_figures/science-figures-matplotlib.html">
+<h3 class="no-anchor listing-title">
+Scientific Figures - with matplotlib
+</h3>
+<div class="listing-subtitle">
+<p>Plotting in python is great but it can be hard to get started with matplotlib. Getting an ugly figure is easy, getting a good figure is hard. This might make it easier</p>
+</div>
+<div class="listing-description">
+Default matplotlib is awful. It is hard to learn. There is a lot going on. It is not clear. And the matplotlib tutorial is awful (crazily it used to be worse). <strong>But</strong> the package…<em></em>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/scientific_figures/science-figures-matplotlib.html">
+<div class="listing-date">
+Apr 27, 2023
+</div>
+<div class="listing-author">
+Aidan Marnane, Aidan Marnane
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="tmux,nohup,remote working,bash,linux" data-listing-date-sort="1679958000000" data-listing-file-modified-sort="1682615558721" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
+<div class="thumbnail">
+<p><a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html"> <p class="card-img-top"><img src="posts/running-code-in-background/background_code.jpg"  class="thumbnail-image card-img"/></p> </a></p>
+</div>
+<div class="body">
+<a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html">
+<h3 class="no-anchor listing-title">
+Nohup &amp; Tmux - Background Terminal Processes
+</h3>
+<div class="listing-subtitle">
+<p>There is nothing worse than interrupting an experiment that has been running for 3 days by closing a terminal window or losing internet connection. Here is how to fix that.</p>
+</div>
+<div class="listing-description">
+If you have a piece of code that takes a long time to complete e.g.&nbsp;a neural network that needs a day to train, a script that needs to download a million papers, a web…
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/running-code-in-background/2023-03-28-run-scripts-in-background.html">
+<div class="listing-date">
+Mar 28, 2023
+</div>
+<div class="listing-author">
+Aidan Marnane, Aidan Marnane
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="remote working,ssh,bash,vscode,linux" data-listing-date-sort="1679011200000" data-listing-file-modified-sort="1682612267888" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10">
+<div class="thumbnail">
+<p><a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html"> <img src="./posts/working-on-remote-server/remote_working.jpg" class="thumbnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html">
+<h3 class="no-anchor listing-title">
+Remote working with ssh &amp; VSCode
+</h3>
+<div class="listing-subtitle">
+<p>Running code remotely is great but can be intimidating to setup. You often get told things like “just use ssh, portforward and you are good to go” as if it is the easiest thing in the world. Hopefully this tutorial helps make it as easy as everyone says it is!</p>
+</div>
+<div class="listing-description">
+I really like working on a remote server. I find there are a number of benefits over coding locally that are worth taking the time to set it all up.
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/working-on-remote-server/2023-03-17-working-on-a-remote-server.html">
+<div class="listing-date">
+Mar 17, 2023
+</div>
+<div class="listing-author">
+Aidan Marnane
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
