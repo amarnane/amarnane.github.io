@@ -2,11 +2,14 @@ project:
   type: website
   output-dir: docs
 
+freeze: true
+
 website:
   title: "Aidan Marnane"
   favicon: files/icon.png
   image: files/profile.jpg
   navbar:
+    # title: "Aidan<span class='icon-line'></span>Marnane"
     right:
       - about.qmd
       - posts.qmd
@@ -17,10 +20,11 @@ website:
         href: https://twitter.com/a_marnane
 format:
   html:
-    theme:
-      light: flatly
-      dark: darkly
+    theme: [ath, styles/mytheme.scss]
+      # light: [litera, styles/mytheme.scss]
+      # dark: darkly
     css: styles.css
+    highlight-style: witchhazel
 
 
 

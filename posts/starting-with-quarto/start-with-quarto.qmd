@@ -18,13 +18,41 @@ reference-location: margin
 # csl: nature.csl
 ---
 
-Following the [basic tutorial](https://quarto.org/docs/get-started/computations/vscode.html) from Quarto. [^6]
+In this document we will introduce a number of the key features Quarto markdown files support. We will be following the [basic tutorial](https://quarto.org/docs/get-started/computations/vscode.html) from Quarto as well as summarising some of the more advanced features introduced in their comprehensive guide. [^6]
 
 
 [^6]: Blog photo by [Setyaki Irham](https://unsplash.com/@setyaki?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) from [Unsplash](https://unsplash.com/photos/tfdff8Poebw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
   
+## What is Quarto?
+Quarto allows you to easily share and publish your code/analysis/research through any of markdown/`jupyter`/`knitr`. It is an extension of pandoc and offers support for `python`/`R`/`Julia`. 
+
+### Best features
+- render `jupyter` notebooks
+- render markdown with code
+- advanced visual customisation - figures, layout, citations
+- create simple and easily customisable websites
+- Great integration with [VSCode](https://code.visualstudio.com/) and [Github Pages](https://pages.github.com/).
+
+## Why use quarto?
+Sharing jupyter notebooks is tedious. Either you share a link to a prerendered notebook on github or you awkwardly convert to html/pdf with a variety of tools. 
+
+*The problem?* The conversion of a notebook is awkward. Often you have to choose between removing all or including all the code. And while the markdown support within `jupyt`er is good  again the customisation is limited. 
+
+Quarto solves this. It is a rendering tool that gives you a number of options with customise how code, figures and text are arranged when converting to `html` and `pdf`.
+
+Even better it provides a new markdown format `.qmd` that allows you to write `python` code within a markdown document (similar to `R markdown`) or link to figures within a precomputed `jupyter` notebook. 
+
+# writing Code
 
 ## NumPy
+Create code blocks in markdown using ` ```{python} `
+```` markdown
+```{python}
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+````
 
 ```{python}
 import numpy as np
@@ -33,9 +61,39 @@ a
 ```
 
 ## Matplotlib
+Control how figures appear with comments `#| keyword: value`. [^:7]
 
+[^7]: The [getting started tutorial](https://quarto.org/docs/get-started/computations/vscode.html) has a nice description of the main options for figures and code output 
+
+```` markdown
 ```{python}
 #| label: fig-limits
+#| fig-cap: "Errorbar limit selector"
+
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+x = np.arange(10)
+y = 2.5 * np.sin(x / 20 * np.pi)
+yerr = np.linspace(0.05, 0.2, 10)
+
+plt.errorbar(x, y + 3, yerr=yerr, label='both limits (default)')
+plt.errorbar(x, y + 2, yerr=yerr, uplims=True, label='uplims=True')
+plt.errorbar(x, y + 1, yerr=yerr, uplims=True, lolims=True,
+             label='uplims=True, lolims=True')
+
+upperlimits = [True, False] * 5
+lowerlimits = [False, True] * 5
+plt.errorbar(x, y, yerr=yerr, uplims=upperlimits, lolims=lowerlimits,
+             label='subsets of uplims and lolims')
+
+plt.legend(loc='lower right')
+plt.show(fig)
+```
+````
+
+```{python}
+#| label: fig-limits-eg
 #| fig-cap: "Errorbar limit selector"
 
 import matplotlib.pyplot as plt
@@ -141,6 +199,7 @@ execute:
 
 [^2]: see the [python tutorial](https://quarto.org/docs/computations/python.html) for a more in depth explanation
 
+# Formatting 
 ## callout blocks
 Quarto has nice control for adding note blocks. There are five formats [^5]
 - note
@@ -200,7 +259,7 @@ plt.show()
 ```
 
 
-This is a cross reference to our figure @fig-line-plot with `@fig-line-plot`. We can also reference the matplotlib figure above @fig-limits `@fig-limits`. 
+This is a cross reference to our figure @fig-line-plot with `@fig-line-plot`. We can also reference the matplotlib figure above @fig-limits-eg `@fig-limits-eg`. 
 
 :::{.callout-note}
 You must start your label with `fig-` e.g. `fig-line-plot` for the cross reference to work.
