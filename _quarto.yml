@@ -20,11 +20,12 @@ website:
         href: https://twitter.com/a_marnane
 format:
   html:
-    theme: [ath, styles/mytheme.scss]
-      # light: [litera, styles/mytheme.scss]
-      # dark: darkly
+    # theme: [ath, styles/mytheme.scss]
+    theme:
+      light: [flatly, styles/mytheme.scss]
+      dark: [darkly, styles/darktheme.scss]
     css: styles.css
-    # highlight-style: witchhazel
+    highlight-style: atom-one
 
 
 
