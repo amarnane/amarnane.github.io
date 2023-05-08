@@ -9,7 +9,6 @@ website:
   favicon: files/icon.png
   image: files/profile.jpg
   navbar:
-    # title: "Aidan<span class='icon-line'></span>Marnane"
     right:
       - about.qmd
       - posts.qmd

@@ -1,0 +1,68 @@
+// Example scss to customise colors and fonts.
+// More detail of customisable options can be found at https://quarto.org/docs/output-formats/html-themes.html
+
+// special comment used to define variables
+/*-- scss:defaults --*/
+
+// define some colors
+// I use new names. You can use names like $orange or $green. 
+// These overwrite the default choices used in the theme
+// and will be used in other places outside the navbar or links defined below
+// e.g. in a warning box
+// I am lazy and only wanted to change these options rather than balance a full theme.
+$mywhite:  #fff !default;
+$myorange: #E56B6F !default;
+$myblue: #7067CF !default;
+$mypurple: #6e1f55 !default;
+$mylight-orange: #F9C784 !default;
+$mygreen: #06D6A0 !default;
+
+// Change Navbar colors
+$navbar-bg: $myblue !default;
+$navbar-fg: $mywhite !default;
+$navbar-hl: $mylight-orange !default;
+
+// Change Link colors
+$link-color: $myorange !default;
+$link-decoration: none !default;
+$link-hover-color: $mypurple !default;
+$link-hover-decoration: underline !default;
+
+// to customise font select a font you like from google fonts https://fonts.google.com/
+// change name of family in link below to match chosen font
+// e.g. If I want Roborto https://fonts.google.com/specimen/Roboto 
+// @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+// heading font
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+// body font
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap');
+
+
+// Use our selected body font
+$font-family-sans-serif: "Libre Franklin", sans-serif !default;
+// if theme uses a serif font by default you need to tell it to use sans-serif instead
+$font-family: $font-family-sans-serif
+
+// Use our selected heading font
+$headings-font-family: "Kanit", sans-serif !default;
+$headings-font-weight: 600 !default;
+
+// change the navigation bar font family
+// note: this variable is not used by default in the bootswatch theme so 
+//       we have to use a rule below to ensure the heading font is used in navbar
+$navbar-font-family: "Kanit", sans-serif !default;
+
+// default font sizes; ( taken from 
+$font-size-base:   1rem !default; // Assumes the browser default, typically `16px`
+
+
+// special comment used to define rules for elements of theme
+/*-- scss:rules --*/
+.navbar {
+    font-family: $navbar-font-family;
+}
+// increase size of title 
+.navbar-title {
+    font-size: $font-size-base * 1.75;
+  }
