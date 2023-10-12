@@ -18,11 +18,15 @@ about:
     # - icon: linkedin
     #   text: LinkedIn
     #   href: https://uk.linkedin.com/in/aidan-marnane-124391138
-   
+
 listing:
   contents: posts
   sort: "date desc"
   max-items: 4 
+format:
+  html:
+    include-in-header:
+      - text:  <meta name="google-site-verification" content="L0sgbMTDhW9sMuTGbr8FjJ7JT38U2EpHI-5RWW1oIBo" />
 ---
 
 :::{#about-section}
