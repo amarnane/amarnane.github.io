@@ -26,7 +26,7 @@ listing:
 format:
   html:
     include-in-header:
-      - text:  <meta name="google-site-verification" content="L0sgbMTDhW9sMuTGbr8FjJ7JT38U2EpHI-5RWW1oIBo" />
+      - text:  <meta name="google-site-verification" content="dN4VT1zv9a2WKjz5D2b4CVmM3OW9SOdivEIwYQarGjQ" />
 ---
 
 :::{#about-section}
