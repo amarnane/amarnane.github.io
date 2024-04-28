@@ -12,6 +12,8 @@ website:
     right:
       - about.qmd
       - posts.qmd
+      - text: SimnetPy
+        url:  https://amarnane.github.io/
       - icon: github
         href: https://github.com/amarnane
         aria-label: GitHub
