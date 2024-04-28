@@ -32,9 +32,15 @@ format:
 :::{#about-section}
 
 # Welcome!
-I am a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. I am specifically interested in applying these methods to Autism Spectrum Disorder. The hope is to discover meaningful subtypes that can improve supports, care and understanding of ASD. 
+I am a Data Scientist based in Cork, Ireland. I am currently working for [Applied Intelligence Analytics Ltd](https://www.aianalytics.ie/). My primary work involves AI research and development on EU Defence projects with topics ranging from maritime surveillence to sensor fusion. A particular focus of my current work is the analysis of multi-variate time series.
 
-I am also interested in improving the construction of similarity networks and identifying methods of reducing the noise in unsupervised clustering on networks. This work is supervised by [Ian Simpson](http://homepages.inf.ed.ac.uk/thospeda/) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.
+## PhD @ University of Edinburgh
+I was previously a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. I have currently submitted my thesis and await the completion of my viva later this year. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. In my thesis, I explored and evaluated the current approaches used to construct similarity networks. I showcased the power of network construction methods for community detection in identifying subtypes of Cancer and Autism Spectrum Disorder. I highlighted the ability of these methods to incorporate incomplete multi-modal data.  
+
+This work was supervised by [Ian Simpson](https://www.ed.ac.uk/profile/ian-simpson) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.
+
+## Simnetpy
+As part of my research, I developed a package for the analysis of similarity networks. This can be found at [https://amarnane.github.io/simnetpy/](https://amarnane.github.io/simnetpy/). With this package you can generate complex synthetic data, construct similarity networks and perform unsupervised clustering. All included algorithms expect the number of clusters is *unknown*.
 
 :::
 
