@@ -12,12 +12,12 @@ about:
     - icon: github
       text: Github
       href: https://github.com/amarnane
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com/a_marnane
-    # - icon: linkedin
-    #   text: LinkedIn
-    #   href: https://uk.linkedin.com/in/aidan-marnane-124391138
+    # - icon: twitter
+    #   text: Twitter
+    #   href: https://twitter.com/a_marnane
+    - icon: linkedin
+      text: LinkedIn
+      href: https://uk.linkedin.com/in/aidan-marnane-124391138
 
 listing:
   contents: posts
@@ -35,7 +35,8 @@ format:
 I am a Data Scientist based in Cork, Ireland. I am currently working for [Applied Intelligence Analytics Ltd](https://www.aianalytics.ie/). My primary work involves AI research and development on EU Defence projects with topics ranging from maritime surveillence to sensor fusion. A particular focus of my current work is the analysis of multi-variate time series.
 
 ## PhD @ University of Edinburgh
-I was previously a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. I have currently submitted my thesis and await the completion of my viva later this year. My research is on unsupervised clustering of biomedical data through the construction of similarity networks. In my thesis, I explored and evaluated the current approaches used to construct similarity networks. I showcased the power of network construction methods for community detection in identifying subtypes of Cancer and Autism Spectrum Disorder. I highlighted the ability of these methods to incorporate incomplete multi-modal data.  
+I was previously a PhD student in the [Data Science CDT](http://datascience.inf.ed.ac.uk/) at the University of Edinburgh. My research was on unsupervised clustering of biomedical data through the construction of similarity networks. In my thesis, I explored and evaluated the current approaches used to construct similarity networks. I showcased the power of network construction methods for community detection in identifying subtypes of Cancer and Autism Spectrum Disorder. I highlighted the ability of these methods to incorporate incomplete multi-modal data.  See [here for my PhD Thesis](thesis.qmd)
+
 
 This work was supervised by [Ian Simpson](https://www.ed.ac.uk/profile/ian-simpson) and funded in part by the [EPSRC](https://epsrc.ukri.org/). My other research interests include graph learning, extacting and incorporating information from biomedical ontologies and the wider area of network science.
 

@@ -12,13 +12,17 @@ website:
     right:
       - about.qmd
       - posts.qmd
+      - thesis.qmd
       - text: SimnetPy
         url:  https://amarnane.github.io/simnetpy
       - icon: github
         href: https://github.com/amarnane
         aria-label: GitHub
-      - icon: twitter
-        href: https://twitter.com/a_marnane
+      # - icon: twitter
+      #   href: https://twitter.com/a_marnane
+      - icon: linkedin
+        text: LinkedIn
+        href: https://uk.linkedin.com/in/aidan-marnane-124391138
 format:
   html:
     # theme: [ath, styles/mytheme.scss]
